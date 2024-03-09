@@ -1,0 +1,54 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+  "name": "datapoint_dev",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "django",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "ghcr.io/r3dpoint/devcontainer-features/tailwindcss-standalone-cli:1": {}
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "git config --global user.name justivan && git config --global user.email justivan.dev@gmail.com",
+
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "black-formatter.args": ["--line-length", "119"],
+        "editor.formatOnSave": true,
+        "[python]": {
+          "analysis.autoImportCompletions": true,
+          "analysis.typeCheckingMode": "basic",
+          "defaultInterpreterPath": "/usr/local/bin/python",
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+          },
+          // "editor.defaultFormatter": "ms-python.black-formatter",
+          "formatting.blackPath": "/usr/local/bin/black",
+          "formatting.provider": "black",
+          "languageServer": "Pylance"
+        }
+      },
+      "extensions": [
+        "esbenp.prettier-vscode",
+        // python
+        "ms-python.black-formatter",
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        // django
+        "batisteo.vscode-django"
+      ]
+    }
+  }
+
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
+}
