@@ -26,7 +26,7 @@ class Department(models.Model):
         return self.name
 
 
-class Team(models.Model):
+class Role(models.Model):
     name = models.CharField(max_length=120, unique=True)
     department = models.ForeignKey(Department, on_delete=models.PROTECT)
 
@@ -42,8 +42,8 @@ class User(AbstractUser):
     name = models.CharField(_("Name of User"), max_length=120, blank=True)
     first_name = None
     last_name = None
-    team = models.ForeignKey(
-        Team,
+    role = models.ForeignKey(
+        Role,
         on_delete=models.PROTECT,
         blank=True,
         null=True,

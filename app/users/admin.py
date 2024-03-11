@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 
 from django.contrib.auth import get_user_model
 
-from .models import BusinessUnit, Department, Team
+from .models import BusinessUnit, Department, Role
 
 User = get_user_model()
 
@@ -13,7 +13,7 @@ class UserModelAdmin(UserAdmin):
     list_display = (
         "username",
         "name",
-        "team",
+        "role",
         "email",
         "last_login",
         "is_superuser",
@@ -22,7 +22,7 @@ class UserModelAdmin(UserAdmin):
     fieldsets = (
         (None, {"fields": ("username", "password")}),
         ("Personal Information", {"fields": ("name", "email")}),
-        ("Role Information", {"fields": ("team",)}),
+        ("Role Information", {"fields": ("role",)}),
         ("Permissions", {"fields": ("is_active", "is_staff", "is_superuser", "groups", "user_permissions")}),
         ("Important dates", {"fields": ("last_login", "date_joined")}),
     )
