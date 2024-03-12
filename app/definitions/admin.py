@@ -1,6 +1,6 @@
 from django.contrib import admin
 from leaflet.admin import LeafletGeoAdmin
-from .models import Country, Region, Area, MealPlan
+from .models import Country, Region, Area, MealPlan, Currency
 
 
 @admin.register(Country)
@@ -29,4 +29,9 @@ class AreaModelAdmin(LeafletGeoAdmin):
 
 @admin.register(MealPlan)
 class MealPlanModelAdmin(admin.ModelAdmin):
+    list_display = ("code", "name")
+
+
+@admin.register(Currency)
+class CurrencyModelAdmin(admin.ModelAdmin):
     list_display = ("code", "name")

@@ -19,7 +19,6 @@ class Department(models.Model):
     business_unit = models.ForeignKey(BusinessUnit, on_delete=models.PROTECT)
 
     class Meta:
-        db_table = "users_deparment"
         ordering = ("name",)
 
     def __str__(self) -> str:
@@ -31,7 +30,6 @@ class Role(models.Model):
     department = models.ForeignKey(Department, on_delete=models.PROTECT)
 
     class Meta:
-        db_table = "users_role"
         ordering = ("name",)
 
     def __str__(self) -> str:
@@ -49,7 +47,7 @@ class User(AbstractUser):
         null=True,
     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.username
 
 
