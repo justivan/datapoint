@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "users",
     "definitions",
     "leaflet",
+    "accommodation",
 ]
 
 MIDDLEWARE = [
