@@ -31,7 +31,7 @@ class Role(models.Model):
     department = models.ForeignKey(Department, on_delete=models.PROTECT)
 
     class Meta:
-        db_table = "users_team"
+        db_table = "users_role"
         ordering = ("name",)
 
     def __str__(self) -> str:

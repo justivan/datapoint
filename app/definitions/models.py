@@ -3,9 +3,22 @@ from django.contrib.gis.db.models import MultiPolygonField
 from django.utils.translation import gettext_lazy as _
 
 
+class Currency(models.Model):
+    code = models.CharField(max_length=3, unique=True)
+    name = models.CharField(max_length=120, unique=True)
+
+    class Meta:
+        ordering = ("name",)
+        verbose_name_plural = "Currencies"
+
+    def __str__(self) -> str:
+        return self.name
+
+
 class Country(models.Model):
     code = models.CharField(max_length=2, primary_key=True)
     name = models.CharField(max_length=120, unique=True)
+    currency = models.ForeignKey(Currency, on_delete=models.PROTECT)
 
     class Meta:
         ordering = ("name",)
