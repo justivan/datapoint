@@ -22,6 +22,7 @@ from django.conf import settings
 
 urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
+    path("grappelli/", include("grappelli.urls")),
     path("__debug__/", include("debug_toolbar.urls")),
 ]
 

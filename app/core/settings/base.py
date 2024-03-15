@@ -22,18 +22,29 @@ env = environ.Env()
 DEBUG = env.bool("DJANGO_DEBUG", False)
 
 # Application definition
-INSTALLED_APPS = [
+
+DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "users",
-    "definitions",
-    "leaflet",
-    "accommodation",
+    "django.contrib.gis",
 ]
+
+THIRD_PARTY_APPS = [
+    "leaflet",
+]
+
+LOCAL_APPS = [
+    "accommodation",
+    "definitions",
+    "scripts",
+    "users",
+]
+
+INSTALLED_APPS = ["grappelli"] + THIRD_PARTY_APPS + DJANGO_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -159,3 +170,7 @@ LEAFLET_CONFIG = {
         ),
     ],
 }
+
+# Django Grappelli
+GRAPPELLI_ADMIN_TITLE = "Datapoint"
+GRAPPELLI_CLEAN_INPUT_TYPES = True
