@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+python manage.py collectstatic --noinput
+python manage.py migrate
+
+uwsgi --socket :8000 \
+      --chmod-socket=666 \
+      --workers 2 \
+      --threads 4 \
+      --master \
+      --enable-threads \
+      --module core.wsgi \
+      --buffer-size=65535 \
+      --http-timeout=300

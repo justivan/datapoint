@@ -140,7 +140,7 @@ class Hotel(UserTrackingMixin, models.Model):
         null=True,
     )
     status = models.ForeignKey(HotelStatus, default=1, on_delete=models.PROTECT)
-    giata = models.IntegerField(blank=True, default=0)
+    giata = models.IntegerField(unique=True, blank=True, null=True)
     tags = models.ManyToManyField(
         HotelTag,
         db_table="accommodation_hotel_tag",
