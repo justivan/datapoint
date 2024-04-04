@@ -23,7 +23,6 @@ from django.conf import settings
 urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     path("grappelli/", include("grappelli.urls")),
-    path("__debug__/", include("debug_toolbar.urls")),
 ]
 
 if settings.DEBUG:
@@ -31,3 +30,7 @@ if settings.DEBUG:
         settings.MEDIA_URL,
         document_root=settings.MEDIA_ROOT,
     )
+    if "debug_toolbar" in settings.INSTALLED_APPS:
+        import debug_toolbar
+
+        urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns
